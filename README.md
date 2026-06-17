@@ -28,3 +28,24 @@ Atomic Design structures UI components hierarchically as atoms, molecules, organ
 
 ## Component Types: Functional vs Class
 React officially recommends function components for new code. Function components are simpler and support Hooks, whereas class components (extending React.Component) are now legacy. In modern React (v18+), function components with hooks can do almost everything classes could, including state and lifecycle (via useState, useEffect, etc.). Classes are only needed for features not yet hook-friendly (for example, implementing an Error Boundary, which currently must be a class).
+- Function Component (with Hooks) – preferred pattern. Example:
+  # React Counter Component (JavaScript)
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+function Counter({ initialCount = 0 }) {
+  const [count, setCount] = useState(initialCount);
+
+  useEffect(() => {
+    document.title = `Count: ${count}`;
+  }, [count]);
+
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Count: {count}
+    </button>
+  );
+}
+
+export default Counter;
